@@ -1,0 +1,271 @@
+[
+  {
+    "id": 1,
+    "note": "easy: clear pelvic-floor booking",
+    "transcript": "Hola buenas, llamaba porque quería pedir cita para lo del suelo pélvico. Me lo recomendó mi matrona después del parto. ¿Tenéis hueco la semana que viene por las tardes?",
+    "expected": {
+      "intent": "agendar_cita",
+      "specialty": "suelo_pelvico",
+      "wants_appointment": true,
+      "urgency": "baja"
+    }
+  },
+  {
+    "id": 2,
+    "note": "easy: cancellation",
+    "transcript": "Buenos días, tenía una cita el jueves a las cinco y media y no voy a poder ir. Quería cancelarla. Mi nombre es Carmen, apellido Ruiz.",
+    "expected": {
+      "intent": "cancelar_cita",
+      "specialty": "otras",
+      "wants_appointment": false,
+      "urgency": "baja"
+    }
+  },
+  {
+    "id": 3,
+    "note": "easy: reschedule",
+    "transcript": "Hola, tengo cita el martes para el tratamiento capilar pero me ha surgido trabajo. ¿Se podría cambiar para el viernes o el lunes siguiente?",
+    "expected": {
+      "intent": "modificar_cita",
+      "specialty": "capilar",
+      "wants_appointment": true,
+      "urgency": "baja"
+    },
+    "label_corrected": true
+  },
+  {
+    "id": 4,
+    "note": "TRAP: asks the price, explicitly does NOT want to book",
+    "transcript": "Buenas, solamente quería saber cuánto cuesta la sesión de láser, nada más. No, no quiero pedir cita todavía, es solo para informarme y comparar. Gracias.",
+    "expected": {
+      "intent": "info_general",
+      "specialty": "estetica",
+      "wants_appointment": false,
+      "urgency": "baja"
+    }
+  },
+  {
+    "id": 5,
+    "note": "TRAP: explicit negation, but DOES want to book",
+    "transcript": "No, no, no quiero información, ya me informé el mes pasado. Lo que quiero es que me deis hora con la doctora para el suelo pélvico cuanto antes.",
+    "expected": {
+      "intent": "agendar_cita",
+      "specialty": "suelo_pelvico",
+      "wants_appointment": true,
+      "urgency": "normal"
+    }
+  },
+  {
+    "id": 6,
+    "note": "pure complaint",
+    "transcript": "Mire, es que esto ya es el colmo. Es la tercera vez que vengo y la tercera vez que me hacen esperar cuarenta minutos. Quiero hablar con el responsable porque esto no es serio.",
+    "expected": {
+      "intent": "reclamacion",
+      "specialty": "otras",
+      "wants_appointment": false,
+      "urgency": "baja"
+    },
+    "label_corrected": true
+  },
+  {
+    "id": 7,
+    "note": "MIXED: complains AND wants to book",
+    "transcript": "Vamos a ver, llevo dos semanas llamando y nadie me coge. Es lamentable. Pero bueno, ya que me has cogido, dame cita para la revisión de suelo pélvico, que la tengo pendiente desde marzo.",
+    "expected": {
+      "intent": "agendar_cita",
+      "specialty": "suelo_pelvico",
+      "wants_appointment": true,
+      "urgency": "baja"
+    },
+    "label_corrected": true
+  },
+  {
+    "id": 8,
+    "note": "real medical urgency",
+    "transcript": "Por favor, necesito que me atienda alguien ya. Me operaron hace diez días y tengo la zona muy inflamada, con mucho dolor y creo que está supurando. No sé si ir a urgencias o esperar.",
+    "expected": {
+      "intent": "urgencia",
+      "specialty": "suelo_pelvico",
+      "wants_appointment": true,
+      "urgency": "alta"
+    }
+  },
+  {
+    "id": 9,
+    "note": "TRAP: says 'urgent' but it's about opening hours, not medical",
+    "transcript": "Hola, es urgente, urgentísimo. Necesito saber si el jueves abrís por la tarde porque me voy de vacaciones el viernes y quiero dejarlo cerrado antes de irme.",
+    "expected": {
+      "intent": "info_general",
+      "specialty": "otras",
+      "wants_appointment": false,
+      "urgency": "baja"
+    }
+  },
+  {
+    "id": 10,
+    "note": "third party: daughter calls for her mother",
+    "transcript": "Buenas tardes, llamo de parte de mi madre, que ella no se aclara con estas cosas. Quería pedirle cita para lo de la caída del pelo, que está muy preocupada. Ella se llama Josefa.",
+    "expected": {
+      "intent": "agendar_cita",
+      "specialty": "capilar",
+      "wants_appointment": true,
+      "urgency": "baja"
+    }
+  },
+  {
+    "id": 11,
+    "note": "TRAP: two specialties mentioned",
+    "transcript": "Hola, mira, yo venía por lo del suelo pélvico, pero ya que estoy, también me interesaría preguntar por lo de las manchas de la cara. Pero lo principal es lo del suelo pélvico, eso es lo que me urge.",
+    "expected": {
+      "intent": "agendar_cita",
+      "specialty": "suelo_pelvico",
+      "wants_appointment": true,
+      "urgency": "normal"
+    }
+  },
+  {
+    "id": 12,
+    "note": "TRAP: a service the clinic does not offer",
+    "transcript": "Buenos días, ¿ustedes hacen radiografías de rodilla? Es que me he caído y me duele bastante al apoyar.",
+    "expected": {
+      "intent": "info_general",
+      "specialty": "otras",
+      "wants_appointment": false,
+      "urgency": "normal"
+    }
+  },
+  {
+    "id": 13,
+    "note": "wrong number",
+    "transcript": "¿Oiga? ¿Es la ferretería Martínez? Ah, pues perdone, me he debido equivocar de número. Disculpe, hasta luego.",
+    "expected": {
+      "intent": "otro",
+      "specialty": "otras",
+      "wants_appointment": false,
+      "urgency": "baja"
+    }
+  },
+  {
+    "id": 14,
+    "note": "noisy, cut-off transcript",
+    "transcript": "Sí, hola... [inaudible] ...para pedir... el jueves o... ¿me oye? Es que no... [ruido] ...vale pues llamo luego.",
+    "expected": {
+      "intent": "otro",
+      "specialty": "otras",
+      "wants_appointment": false,
+      "urgency": "baja"
+    }
+  },
+  {
+    "id": 15,
+    "note": "vague: regular patient asking for 'the usual'",
+    "transcript": "Hola Marisa, soy Pilar la de siempre. Pues eso, para lo de todos los meses, cuando me venga bien a mí y a vosotras. Ya sabes.",
+    "expected": {
+      "intent": "agendar_cita",
+      "specialty": "otras",
+      "wants_appointment": true,
+      "urgency": "baja"
+    }
+  },
+  {
+    "id": 16,
+    "note": "IRONY: sarcastic praise that is really a complaint",
+    "transcript": "Sí, encantada, maravilloso el servicio, de verdad. Llevo desde las ocho de la mañana intentando que alguien me coja el teléfono. Un lujo, oiga. En fin, que quiero que me devuelvan el dinero del tratamiento.",
+    "expected": {
+      "intent": "reclamacion",
+      "specialty": "otras",
+      "wants_appointment": false,
+      "urgency": "baja"
+    },
+    "label_corrected": true
+  },
+  {
+    "id": 17,
+    "note": "info question that implies booking",
+    "transcript": "Buenas, quería preguntar si el tratamiento de suelo pélvico lo cubre el seguro de Adeslas. Si lo cubre, me interesaría empezar ya la semana que viene.",
+    "expected": {
+      "intent": "info_general",
+      "specialty": "suelo_pelvico",
+      "wants_appointment": true,
+      "urgency": "baja"
+    }
+  },
+  {
+    "id": 18,
+    "note": "after-hours voicemail",
+    "transcript": "Hola, veo que estáis cerrados. Os dejo el mensaje para que me llaméis mañana y me deis hora para la depilación láser de piernas enteras. Mi teléfono lo tenéis. Gracias.",
+    "expected": {
+      "intent": "agendar_cita",
+      "specialty": "estetica",
+      "wants_appointment": true,
+      "urgency": "baja"
+    }
+  },
+  {
+    "id": 19,
+    "note": "TRAP: says 'cancel' but actually reschedules",
+    "transcript": "Mira, anula la del día 12 que no puedo. Bueno, anular anular tampoco, a ver si me la puedes poner otro día de esa misma semana.",
+    "expected": {
+      "intent": "modificar_cita",
+      "specialty": "otras",
+      "wants_appointment": true,
+      "urgency": "baja"
+    }
+  },
+  {
+    "id": 20,
+    "note": "strong emotional distress, chronic condition",
+    "transcript": "Estoy desesperada de verdad, llevo años con esto y no puedo más, lloro todos los días. Necesito que alguien me ayude con lo del suelo pélvico, por favor, lo que sea.",
+    "expected": {
+      "intent": "agendar_cita",
+      "specialty": "suelo_pelvico",
+      "wants_appointment": true,
+      "urgency": "alta"
+    }
+  },
+  {
+    "id": 21,
+    "note": "sales / spam call",
+    "transcript": "Buenos días, le llamo de Iberdrola para informarle de una mejora en la tarifa de su negocio. ¿Sería tan amable de pasarme con el responsable de compras?",
+    "expected": {
+      "intent": "otro",
+      "specialty": "otras",
+      "wants_appointment": false,
+      "urgency": "baja"
+    }
+  },
+  {
+    "id": 22,
+    "note": "post-treatment question, no booking",
+    "transcript": "Hola, me hicieron el tratamiento el lunes y quería saber si puedo ir a la piscina ya o tengo que esperar. Solo es esa duda, nada más.",
+    "expected": {
+      "intent": "info_general",
+      "specialty": "otras",
+      "wants_appointment": false,
+      "urgency": "baja"
+    }
+  },
+  {
+    "id": 23,
+    "note": "TRAP: mentions an appointment only to confirm it",
+    "transcript": "Buenas, llamo solo para confirmar que sigue en pie mi cita del miércoles a las diez, que me llegó un mensaje raro y no sé si se ha anulado.",
+    "expected": {
+      "intent": "info_general",
+      "specialty": "otras",
+      "wants_appointment": false,
+      "urgency": "baja"
+    },
+    "label_corrected": true
+  },
+  {
+    "id": 24,
+    "note": "clear hair-loss booking, moderate urgency",
+    "transcript": "Hola, estoy perdiendo mucho pelo desde hace dos meses, a puñados, y estoy bastante agobiado. Quería cita para el tratamiento capilar lo antes posible, si puede ser esta semana.",
+    "expected": {
+      "intent": "agendar_cita",
+      "specialty": "capilar",
+      "wants_appointment": true,
+      "urgency": "normal"
+    }
+  }
+]

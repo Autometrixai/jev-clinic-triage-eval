@@ -1,0 +1,38 @@
+{
+  "intent": {
+    "type": "choice",
+    "instructions": "Intencion principal del paciente en la llamada",
+    "criteria": {
+      "agendar_cita": "Quiere conseguir una cita nueva",
+      "modificar_cita": "Quiere cambiar la fecha u hora de una cita que ya tiene",
+      "cancelar_cita": "Quiere anular definitivamente una cita, sin sustituirla",
+      "info_general": "Solo pide informacion (precios, horarios, coberturas, dudas) sin querer cita ahora",
+      "urgencia": "Problema medico urgente que necesita atencion inmediata",
+      "reclamacion": "Se queja del servicio, exige responsable o devolucion",
+      "otro": "Numero equivocado, comercial, llamada ininteligible o nada de lo anterior"
+    }
+  },
+  "specialty": {
+    "type": "choice",
+    "instructions": "Especialidad de la clinica que le interesa (clinica de suelo pelvico, estetica y capilar)",
+    "criteria": {
+      "suelo_pelvico": "Suelo pelvico, postparto, incontinencia, rehabilitacion pelvica",
+      "estetica": "Estetica: laser, depilacion, manchas, tratamientos faciales o corporales",
+      "capilar": "Caida del pelo, injerto o tratamiento capilar",
+      "otras": "No se especifica, no aplica, o algo que la clinica no ofrece"
+    }
+  },
+  "wants_appointment": {
+    "type": "boolean",
+    "instructions": "La persona quiere conseguir o mantener una cita (nueva o cambiada). Responder no si solo pide informacion, cancela sin sustituir, o no aplica"
+  },
+  "urgency": {
+    "type": "score",
+    "instructions": "Urgencia CLINICA real del caso, no el tono ni las prisas de agenda",
+    "criteria": [
+      "Sin ninguna urgencia clinica: tramite, duda o consulta rutinaria",
+      "Urgencia normal: molestia o preocupacion que conviene atender pronto",
+      "Urgencia alta: dolor fuerte, posible complicacion o sufrimiento severo"
+    ]
+  }
+}
